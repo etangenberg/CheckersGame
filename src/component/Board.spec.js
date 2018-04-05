@@ -2,11 +2,13 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import Board from './Board';
 import Row from './Row';
+import GameState from '../GameState';
 
 describe('<Board />', () => {
     it('Should render a div with class .board and 8 .Row divs', () => {
+        const state = new GameState(0,8,8)
         const wrapper = shallow((
-            <Board rowCount="8" columnCount="8"/>
+            <Board state={state}/>
         ));
 
        // console.log('Wrapper', wrapper.debug());

@@ -1,5 +1,6 @@
 class PieceState {    
-    constructor(row,col,player,selected = false){        
+    constructor(id,row,col,player=0,selected = false){    
+        this.id = id;    
         this.row = row;
         this.column = col;
         this.player = player;

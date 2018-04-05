@@ -2,18 +2,19 @@ import React, { Component } from 'react';
 import Tile from './Tile';
 
 class Row extends Component {
-  render(row, columnCount) {
+  render(props) {
+    const {row, tileStates} = this.props;
     return (
-      <div className="row" row={this.props.row}>
+      <div className="row" row={row}>
           {
-            this.getRenderTiles(this.props.columnCount)              
+            this.getRenderTiles(tileStates)              
           }          
       </div>
     );
   }  
 
-  getRenderTiles = (count) => {    
-    return (Array.from({length: count}, (v, i) => (<Tile key={i}/>)));
+  getRenderTiles = (tileStates) => {    
+    return tileStates.map((v, i) => (<Tile key={i} tileState={v}/>));
   }
 }
 

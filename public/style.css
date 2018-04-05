@@ -5,19 +5,25 @@
 .tile {
     float: left;
     height: 5em;
-    width: 5em;    
+    width: 5em;            
 }
 
-.row:nth-child(odd) div:nth-child(even),
-.row:nth-child(even) div:nth-child(odd){
+.row:nth-child(odd) .tile:nth-child(even),
+.row:nth-child(even) .tile:nth-child(odd){
     background-color: #fff;
 }
 
-.piece {
-    background-color: #f13;
-    position: absolute;
+.piece {        
     height: 4.5em;
     width: 4.5em; 
-    border-radius: 50%;
-    z-index: 1;
+    border-radius: 50%;    
+    margin: auto auto auto auto;     
+}
+
+.player0{
+    background-color: #00F; 
+}
+
+.player1{
+    background-color: #F00; 
 }

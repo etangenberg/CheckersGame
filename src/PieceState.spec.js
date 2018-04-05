@@ -5,7 +5,8 @@ describe('PieceState', () => {
     it('Contains row and column position of player', () => {
         const row = 4;
         const column = 9;
-        const state =  new PieceState(row, column);
+        const id =1;
+        const state =  new PieceState(id, row, column);
 
        expect(state.row).toBe(row);
        expect(state.column).toBe(column);
@@ -14,7 +15,8 @@ describe('PieceState', () => {
     it('Default not selected', () => {
         const row = 4;
         const column = 9;
-        const state =  new PieceState(row, column);
+        const id = 2;
+        const state =  new PieceState(id, row, column);
        
        expect(state.selected).toBe(false);
     });
