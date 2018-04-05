@@ -1,0 +1,23 @@
+.board{
+    background-color: #000;
+    float: left;
+}
+.tile {
+    float: left;
+    height: 5em;
+    width: 5em;    
+}
+
+.row:nth-child(odd) div:nth-child(even),
+.row:nth-child(even) div:nth-child(odd){
+    background-color: #fff;
+}
+
+.piece {
+    background-color: #f13;
+    position: absolute;
+    height: 4.5em;
+    width: 4.5em; 
+    border-radius: 50%;
+    z-index: 1;
+}

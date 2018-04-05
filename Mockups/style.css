@@ -1,0 +1,17 @@
+.board{
+    background-color: #000;
+    float: left;
+}
+.tile {
+    float: left;
+    height: 5em;
+    width: 5em;    
+}
+
+.row:nth-child(odd) div:nth-child(even){
+    background-color: #fff;
+}
+
+.row:nth-child(even) div:nth-child(odd){
+    background-color: #fff;
+} 
