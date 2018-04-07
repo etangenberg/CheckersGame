@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
-import TileState from '../TileState';
 import Piece from './Piece';
 
 class Tile extends Component {  
-  render(props) {
-    const {tileState} = this.props;
+  render() {
+    const {tileState, onPieceClick, selected} = this.props;
 
     return (
-      <div className="tile">
-        {this.getPieces(tileState.pieces )}
-      </div>
+      <td className={`tile${selected ? ' selected' : ''}`}>
+        {this.getPieces(tileState.pieces, onPieceClick)}
+      </td>
     );
   }
 
-  getPieces(pieces){
+  getPieces(pieces, onPieceClick){
     return pieces.map((v,i)=>{
-      return <Piece key={i} pieceState={v} />
+      return <Piece key={i} pieceState={v} onPieceClick={onPieceClick}/>
     });
   }
 }

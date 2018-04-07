@@ -4,6 +4,7 @@ class TileState{
         this.column = c;
         this.pieces = pieces; // array of piece states
         this.allowedMove = allowedMove;
+        this.selected = false;
     }
 }
 

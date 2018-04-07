@@ -1,4 +1,3 @@
-import PlayerState from './PlayerState';
 import TileState from './TileState';
 import PieceState from './PieceState';
 

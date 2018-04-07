@@ -2,19 +2,19 @@ import React, { Component } from 'react';
 import Tile from './Tile';
 
 class Row extends Component {
-  render(props) {
-    const {row, tileStates} = this.props;
+  render() {
+    const {row, tileStates, onPieceClick} = this.props;
     return (
-      <div className="row" row={row}>
+      <tr className="row" row={row}>
           {
-            this.getRenderTiles(tileStates)              
+            this.getRenderTiles(tileStates, onPieceClick)              
           }          
-      </div>
+      </tr>
     );
   }  
 
-  getRenderTiles = (tileStates) => {    
-    return tileStates.map((v, i) => (<Tile key={i} tileState={v}/>));
+  getRenderTiles = (tileStates, onPieceClick) => {    
+    return tileStates.map((v, i) => (<Tile key={i} tileState={v} selected={v.selected} onPieceClick={onPieceClick}/>));
   }
 }
 

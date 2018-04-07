@@ -1,26 +1,30 @@
 import React, { Component } from 'react';
-import GameState from '../GameState';
+//import GameState from '../GameState';
 import Row from './Row';
 
 class Board extends Component {  
-  render(props) {
-    const {state} = this.props;
+  render() {
+    const {state, onPieceClick} = this.props;
     
+    const getRows = (rowCount, tileStates) => {
+      return Array.from({length: rowCount}, (v, i) => 
+        ( <Row key={i} row={i} tileStates={tileStates[i]} onPieceClick={onPieceClick}/>) );
+    }
+
     return (
-      <div className="board">
-          {this.getRows(state.rows, state.tileStates)}
-      </div>
+      <table className="board">
+        <tbody>
+          {getRows(state.rows, state.tileStates)}
+        </tbody>
+      </table>
     );
   }
 
-  getRows = (rowCount, tileStates) => {
-    return Array.from({length: rowCount}, (v, i) => 
-      ( <Row key={i} row={i} tileStates={tileStates[i]} />) );
-  }
+
 }
 
 // Board.propTypes = {
-//   gameState: GameState
+//   state: React.propTypes.Object.isRequired
 // }
 
 export default Board;

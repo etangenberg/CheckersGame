@@ -1,12 +1,15 @@
 .board{
     background-color: #000;
     float: left;
+    width: 100%;
+    height:100vw;
+    position:relative;
 }
-.tile {
+/* .tile { 
     float: left;
     height: 5em;
     width: 5em;            
-}
+}  */
 
 .row:nth-child(odd) .tile:nth-child(even),
 .row:nth-child(even) .tile:nth-child(odd){
@@ -14,8 +17,8 @@
 }
 
 .piece {        
-    height: 4.5em;
-    width: 4.5em; 
+    height: 80%;
+    width: 80%; 
     border-radius: 50%;    
     margin: auto auto auto auto;     
 }
@@ -26,4 +29,12 @@
 
 .player1{
     background-color: #F00; 
+}
+
+.piece .selected{
+    border: 3px #777 solid;
+    background-color: aqua;
+} 
+.selected .tile {
+    background-color: aquamarine;
 }

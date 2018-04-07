@@ -1,17 +1,42 @@
 .board{
     background-color: #000;
     float: left;
+    width: 50%;
+    height:50vw;
+    position:relative;
 }
-.tile {
+/* .tile { 
     float: left;
     height: 5em;
-    width: 5em;    
-}
+    width: 5em;            
+}  */
 
-.row:nth-child(odd) div:nth-child(even){
+tr:nth-child(odd) td:nth-child(even),
+tr:nth-child(even) td:nth-child(odd){
     background-color: #fff;
 }
 
-.row:nth-child(even) div:nth-child(odd){
-    background-color: #fff;
-} 
+.player0{
+    background-color: #00F; 
+}
+
+.player1{
+    background-color: #F00; 
+}
+
+.piece {        
+    height: 80%;
+    width: 80%; 
+    border-radius: 50%;    
+    margin: auto auto auto auto;   
+    background-color: #F00;  
+}
+table tr td .selected {      /* this works */
+    background:yellow;
+    color:red;
+    background-color: blueviolet;
+  }
+
+.selected{
+    background-color: aqua;
+}
