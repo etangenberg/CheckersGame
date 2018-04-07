@@ -11,8 +11,8 @@
     width: 5em;            
 }  */
 
-.row:nth-child(odd) .tile:nth-child(even),
-.row:nth-child(even) .tile:nth-child(odd){
+.row:nth-child(odd) .tile:nth-child(odd),
+.row:nth-child(even) .tile:nth-child(even){
     background-color: #fff;
 }
 
@@ -35,6 +35,11 @@
     border: 3px #777 solid;
     background-color: aqua;
 } 
-.selected .tile {
+.selected .piece {
     background-color: aquamarine;
+}
+
+
+.selected{
+    background-color: aqua;
 }
