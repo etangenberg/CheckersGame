@@ -1,11 +1,11 @@
 import React from 'react';
 import Board from './Board';
-import GameState from '../GameState';
+import * as CheckersLogic from '../CheckersLogic';
 
 class CheckersGame extends React.Component{
     constructor(props){
         super(props);
-        this.state = new GameState(0,8,8);
+        this.state = CheckersLogic.getInitialState(0);
     }
 
     render(){
