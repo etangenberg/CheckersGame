@@ -13,8 +13,12 @@ export function getPieceSelectedAllowedMovesState(state, selectedPieceState){
         const row = selectedPieceState.row;
         const col = selectedPieceState.column;
         let direction = state.CurrentPlayer === 1 ? -1 : 1;
-        newState.tileStates[row+direction][col-1].allowedMove = true;
-        newState.tileStates[row+direction][col+1].allowedMove = true;
+        if (col > 0) {
+            newState.tileStates[row+direction][col-1].allowedMove = true;
+        }
+        if (col < state.columns - 1) {
+            newState.tileStates[row+direction][col+1].allowedMove = true;
+        }
         return newState;
     };
 
