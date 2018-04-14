@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 
 class Piece extends Component {    
   render() {
-    // const onClick = () =>{
-    //   onPieceClick(this.props.)
-    // }
-
     const {pieceState, onPieceClick,selected} = this.props;
     return (
       <div className={`piece player${pieceState.player}${selected?'selected':''}` }
@@ -17,9 +13,5 @@ class Piece extends Component {
     );
   }  
 }
-
-// Piece.propTypes = {
-//   pieceState: PieceState
-// }
 
 export default Piece;
