@@ -20,14 +20,9 @@ class CheckersGame extends React.Component{
     }
 
     onPieceClick(pieceState){
-        console.log(pieceState);
-        const row = pieceState.row;
-        const column = pieceState.column;
-        
-        let newStates = JSON.parse(JSON.stringify(this.state.tileStates))
-        newStates[row][column].selected = true;
-        newStates[row][column].pieces[0].selected = true;
-        this.setState((state)=>({tileStates: newStates}));
+        let newState = CheckersLogic.getPieceSelectedAllowedMovesState(this.state, pieceState);
+        console.log('New State', newState);
+        this.setState((state)=>({tileStates: newState.tileStates}));
       }
 }
 

@@ -1,10 +1,15 @@
 .board{
-    background-color: #000;
-    float: left;
-    width: 100%;
-    height:100vw;
-    position:relative;
+    background:#00f url("./texture.jpg") repeat center center;
+    width: 80%;
+    height:80vw;
+    margin: 2% auto 0 auto;
+    background-size: cover;
+    box-shadow: 0.2em 0.2em 2em;    
+
 }
+
+/*position:relative;*/
+
 /* .tile { 
     float: left;
     height: 5em;
@@ -13,10 +18,11 @@
 
 .row:nth-child(odd) .tile:nth-child(odd),
 .row:nth-child(even) .tile:nth-child(even){
-    background-color: #fff;
+    background-color: rgba(255,255,255,0.3);
 }
 
 .piece {        
+    
     height: 80%;
     width: 80%; 
     border-radius: 50%;    
@@ -24,11 +30,15 @@
 }
 
 .player0{
-    background-color: #00F; 
+    background:#00f url("./texture.jpg") no-repeat center center;
+    box-shadow: 0.4em 0.4em 0.5em 0.1em rgba(0,0,0,0.8);    
 }
 
 .player1{
-    background-color: #F00; 
+    background-image: url("./texture.jpg");
+    background-color:#AAA;
+    box-shadow: 0.4em 0.4em 0.8em 0.1em rgba(0,0,0,0.8);    
+    background-blend-mode: soft-light;
 }
 
 .piece .selected{
@@ -39,7 +49,10 @@
     background-color: aquamarine;
 }
 
-
-.selected{
-    background-color: aqua;
+.moveselection{
+    background-color:white;
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    margin: auto auto;       
 }

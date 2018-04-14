@@ -14,7 +14,7 @@ class Row extends Component {
   }  
 
   getRenderTiles = (tileStates, onPieceClick) => {    
-    return tileStates.map((v, i) => (<Tile key={i} tileState={v} selected={v.selected} onPieceClick={onPieceClick}/>));
+    return tileStates.map((v, i) => (<Tile key={i} tileState={v} onPieceClick={onPieceClick}/>));
   }
 }
 
