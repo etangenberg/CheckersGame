@@ -14,25 +14,32 @@ export function getPieceSelectedAllowedMovesState(state, selectedPieceState){
         const col = selectedPieceState.column;
         let direction = state.CurrentPlayer === 1 ? -1 : 1;
  
-        const isEmptyTile = (row, col, tileStates) => {
-            return  (!tileStates[row][col].pieces || tileStates[row][col].pieces.length <= 0);
+        const getTile = (row,col) => {
+            return newState.tileStates[row][col];
+        }
+
+        const isEmptyTile = (tile) => {
+            return  (!tile.pieces || tile.pieces.length <= 0);
         };
 
         const setStateDirection = (row, col, rowDirection, colDirection ) => {
             let nextCol = col + colDirection;
             let nextRowIndex = row + rowDirection;
-            let nextRow = newState.tileStates[nextRowIndex];
-    
+            let hitTile = getTile(nextRowIndex, nextCol);
+
             if ( (colDirection > 0 && col < state.columns - 1) 
                 || (colDirection<0 && col > 0))  {
-                if (isEmptyTile(nextRowIndex, nextCol, newState.tileStates)){
-                    nextRow[nextCol].allowedMove = true;
+                if (isEmptyTile(hitTile)){
+                    hitTile.allowedMove = true;
                 }
                 // check if hit
-                else if (nextRow[nextCol].pieces[0].player !== state.CurrentPlayer){
-                     if (isEmptyTile(row+(2*rowDirection),col+colDirection*2, newState.tileStates)){
-                        newState.tileStates[row+(2*direction)][col+colDirection*2].hitPieces = newState.tileStates[row+direction][col+1].pieces; 
-                        newState.tileStates[row+(2*direction)][col+colDirection*2].allowedMove = true;
+                else if (hitTile.pieces[0].player !== state.CurrentPlayer){
+                    let secondCol = col + 2*colDirection;
+                    let secondRow = row + 2*rowDirection;
+                    let nextTile = getTile(secondRow, secondCol);
+                     if (isEmptyTile(nextTile)){
+                        nextTile.hitPieces = hitTile.pieces; 
+                        nextTile.allowedMove = true;
                      }          
                 }
             }    
