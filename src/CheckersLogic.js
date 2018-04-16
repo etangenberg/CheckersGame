@@ -31,6 +31,11 @@ export function getPieceSelectedAllowedMovesState(state, selectedPieceState){
                 || (colDirection<0 && col > 0))  {
                 if (isEmptyTile(hitTile)){
                     hitTile.allowedMove = true;
+                    newState.allowedMoves.push( 
+                        {
+                            row: nextRowIndex,
+                            col: nextCol
+                        } );
                 }
                 // check if hit
                 else if (hitTile.pieces[0].player !== state.CurrentPlayer){
@@ -40,10 +45,19 @@ export function getPieceSelectedAllowedMovesState(state, selectedPieceState){
                      if (isEmptyTile(nextTile)){
                         nextTile.hitPieces = hitTile.pieces; 
                         nextTile.allowedMove = true;
+                        newState.allowedMoves.push( 
+                            {
+                                row: secondRow,
+                                col: secondCol
+                            });
                      }          
                 }
             }    
         };
+        
+        deselect(newState);
+
+        cleanAllowedMoves(newState);
 
         // left
         setStateDirection(row, col, direction, -1);
@@ -51,5 +65,42 @@ export function getPieceSelectedAllowedMovesState(state, selectedPieceState){
         // right
         setStateDirection(row, col, direction, +1);
 
+        select(newState, row,col);
+
         return newState;
     };
+
+    const deselect = (state) => {
+        if (isEmpty(state.selected))
+            return;
+        
+        const column = state.selected.col;
+        const row = state.selected.row;
+        console.log('state', state);
+        state.tileStates[row][column].selected = false;
+        state.selected = {};
+    };
+    
+    const cleanAllowedMoves = (newState) => {
+        if (newState.allowedMoves.length<=0)
+            return;
+        
+        newState.allowedMoves.forEach(tile => {
+            const row = tile.row;
+            const col = tile.col;
+            newState.tileStates[row][col].allowedMove = false;
+        });
+
+        newState.allowedMoves = [];
+    }
+
+    const isEmpty = (object) => {
+        return Object.keys(object).length === 0 && object.constructor === Object;
+    };
+
+    const select = (state, row, col) => {
+        state.selected ={
+            row : row,
+            col : col
+        }
+    }    

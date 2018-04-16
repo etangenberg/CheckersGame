@@ -7,6 +7,8 @@ class  GameState {
         this.rows = rows;
         this.columns = columns;
         this.tileStates = this.getInitialTileStates();
+        this.selected = {};
+        this.allowedMoves = [];
     }
     
     getInitialTileStates(){                        

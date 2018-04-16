@@ -22,7 +22,7 @@ class CheckersGame extends React.Component{
     onPieceClick(pieceState){
         let newState = CheckersLogic.getPieceSelectedAllowedMovesState(this.state, pieceState);
         console.log('New State', newState);
-        this.setState((state)=>({tileStates: newState.tileStates}));
+        this.setState((state)=>(newState));
       }
 }
 
