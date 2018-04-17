@@ -1,6 +1,7 @@
 import * as CheckersLogic from './CheckersLogic';
 import Piece from './component/Piece';
 import PieceState from './PieceState';
+import Position from './Position';
 
 describe('CheckersLogic', () => {
     it('getInitializeState returns 8x8 board with states', () => {
@@ -122,20 +123,26 @@ describe('CheckersLogic', () => {
             expect(newState.tileStates[row][col].pieces[0].selected).toBe(false);        
             expect(newState.tileStates[row+1][col-1].allowedMove).toBe(false);      
             expect(newState.tileStates[row+1][col+1].allowedMove).toBe(false);      
-         });
+    });
 
-    // it('Only one piece can be selected', () => {
-    //     // Arrange
-    //     let state = CheckersLogic.getInitialState(0);
-    //     const row = 2;
-    //     const col = 5;
-    //     let selectedPieceState = state.tileStates[row][col].pieces[0];
-    //     let newState = CheckersLogic.getPieceSelectedAllowedMovesState(state, selectedPieceState);
+    it('Only one piece can be selected', () => {
+        // Arrange
+        let state = CheckersLogic.getInitialState(0);
+        const row = 2;
+        const col = 5;
+        let selectedPieceState = state.tileStates[row][col].pieces[0];
+        let newState = CheckersLogic.getPieceSelectedAllowedMovesState(state, selectedPieceState);
+       
+        let newCol = col-2;
+        let newRow = row;
+
+        let newSelectedPieceState = state.tileStates[row][col-2].pieces[0];
+        newState = CheckersLogic.getPieceSelectedAllowedMovesState(state, newSelectedPieceState);
         
-    //     let newSelectedPieceState = state.tileStates[row][col-2].pieces[0];
-    //     newState = CheckersLogic.getPieceSelectedAllowedMovesState(state, newSelectedPieceState);
+        expect(newState.selected.row).toBe(newRow);        
+        expect(newState.selected.col).toBe(newCol);        
 
-    //     expect(newState.selectedPiece).toBe(newState.tileStates[row][col].pieces[0]);        
-    //     expect(newState.selectedPiece.selected).toBe(true);        
-    // });
+        let piece = newState.tileStates[newRow][newCol].pieces[0];
+        expect(piece.selected).toBe(true);        
+    });
 });
