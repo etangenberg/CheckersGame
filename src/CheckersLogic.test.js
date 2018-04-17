@@ -49,7 +49,7 @@ describe('CheckersLogic', () => {
                     expect(tile.allowedMove).toBe(false);
                 } 
             });
-        });
+        });        
     });
 
 
@@ -83,8 +83,7 @@ describe('CheckersLogic', () => {
         let tile = newState.tileStates[3][4];
         expect(tile.allowedMove).toBe(true);
         tile = newState.tileStates[3][6];
-        expect(tile.allowedMove).toBe(false);
-        
+        expect(tile.allowedMove).toBe(false);        
     });
 
     it('It is allowed to move over a position containing a opponents piece, when empty', () => {
@@ -108,4 +107,35 @@ describe('CheckersLogic', () => {
             });
         });
     });
+    
+    it('Selecting piece deselects previous', () => {
+            // Arrange
+            let state = CheckersLogic.getInitialState(0);
+            const row = 2;
+            const col = 1;
+            let selectedPieceState = state.tileStates[row][col].pieces[0];
+            let newState = CheckersLogic.getPieceSelectedAllowedMovesState(state, selectedPieceState);
+            
+            let newSelectedPieceState = state.tileStates[row][col+4].pieces[0];
+            newState = CheckersLogic.getPieceSelectedAllowedMovesState(newState, newSelectedPieceState);
+    
+            expect(newState.tileStates[row][col].pieces[0].selected).toBe(false);        
+            expect(newState.tileStates[row+1][col-1].allowedMove).toBe(false);      
+            expect(newState.tileStates[row+1][col+1].allowedMove).toBe(false);      
+         });
+
+    // it('Only one piece can be selected', () => {
+    //     // Arrange
+    //     let state = CheckersLogic.getInitialState(0);
+    //     const row = 2;
+    //     const col = 5;
+    //     let selectedPieceState = state.tileStates[row][col].pieces[0];
+    //     let newState = CheckersLogic.getPieceSelectedAllowedMovesState(state, selectedPieceState);
+        
+    //     let newSelectedPieceState = state.tileStates[row][col-2].pieces[0];
+    //     newState = CheckersLogic.getPieceSelectedAllowedMovesState(state, newSelectedPieceState);
+
+    //     expect(newState.selectedPiece).toBe(newState.tileStates[row][col].pieces[0]);        
+    //     expect(newState.selectedPiece.selected).toBe(true);        
+    // });
 });
