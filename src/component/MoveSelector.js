@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 
 class MoveSelector extends Component {    
   render() {
-     const {tileState, onMoveSelect} = this.props;
+     const {tileState, onAllowedMoveClicked} = this.props;
     return (
-      <div className="moveselection" onClick={()=>onMoveSelect(tileState)}/>
+      <div className="moveselection" onClick={() => onAllowedMoveClicked(tileState)}/>
     );
   }  
 }

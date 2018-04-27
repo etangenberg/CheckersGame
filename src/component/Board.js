@@ -4,11 +4,13 @@ import Row from './Row';
 
 class Board extends Component {  
   render() {
-    const {state, onPieceClick} = this.props;
+    const {state, onPieceClick, onAllowedMoveClicked} = this.props;
     
     const getRows = (rowCount, tileStates) => {
       return Array.from({length: rowCount}, (v, i) => 
-        ( <Row key={i} row={i} tileStates={tileStates[i]} onPieceClick={onPieceClick}/>) );
+        ( <Row key={i} row={i} tileStates={tileStates[i]}
+          onPieceClick={onPieceClick}
+          onAllowedMoveClicked={onAllowedMoveClicked}/>) );
     }
 
     return (

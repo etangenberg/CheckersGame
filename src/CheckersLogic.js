@@ -43,7 +43,7 @@ export function getPieceSelectedAllowedMovesState(state, selectedPieceState){
                     let secondRow = row + 2*rowDirection;
                     let nextTile = getTile(secondRow, secondCol);
                      if (isEmptyTile(nextTile)){
-                        nextTile.hitPieces.push({
+                        nextTile.hit.push({
                             row: nextRowIndex,
                             col: nextCol
                         }); 
@@ -113,18 +113,22 @@ export function getPieceSelectedAllowedMovesState(state, selectedPieceState){
         const row = tileState.row;
         const col = tileState.column;
         removeHitPieces(newState, tileState);
-        let pieces = state.tileStates[state.selected.row][state.selected.col].pieces;
-        state.tileStates[row][col].pieces = pieces;
-        state.tileStates[state.selected.row][state.selected.col].pieces = [];
+        let pieces = newState.tileStates[state.selected.row][state.selected.col].pieces;
+        pieces.forEach((v,k) => {
+            v.row = row; v.column = col;
+        });
+        newState.tileStates[row][col].pieces = pieces;
+        newState.tileStates[state.selected.row][state.selected.col].pieces = [];
         deselect(newState);
+        cleanAllowedMoves(newState);
         
         return newState;
     }
 
     const removeHitPieces = (state, tileState) => {
-        if (tileState.hitPieces.length <= 0)
+        if (tileState.hit.length <= 0)
             return;
-            tileState.hitPieces.forEach( (piece) => {
-                state.tileStates[piece.row][piece.col].pices = [];        
+            tileState.hit.forEach( (piece) => {
+                state.tileStates[piece.row][piece.col].pieces = [];        
             });
     }

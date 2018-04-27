@@ -13,7 +13,9 @@ class CheckersGame extends React.Component{
         <div>
             <h1>Checkers Game</h1>
             <div>
-                <Board state={this.state} onPieceClick={this.onPieceClick.bind(this)}/>
+                <Board state={this.state}
+                onPieceClick={this.onPieceClick.bind(this)}
+                onAllowedMoveClicked={this.onAllowedMoveClicked.bind(this)}/>
             </div>
         </div>
         );
