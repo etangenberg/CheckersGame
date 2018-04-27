@@ -4,11 +4,11 @@ import MoveSelector from './MoveSelector';
 
 class Tile extends Component {  
   render() {
-    const {tileState, onPieceClick, onAllowedMoveClicked} = this.props;
+    const {playerTurn, tileState, onPieceClick, onAllowedMoveClicked} = this.props;
 
     return (
       <td className={`tile${tileState.allowedMove ? ' allowMovement' : ''}`}>
-        {this.getPieces(tileState.pieces, onPieceClick)}
+        {this.getPieces(tileState.pieces, onPieceClick, playerTurn)}
         { (tileState.allowedMove)?
             <MoveSelector tileState={tileState} onAllowedMoveClicked={onAllowedMoveClicked} />
         :''}
@@ -16,9 +16,9 @@ class Tile extends Component {
     );
   }
 
-  getPieces(pieces, onPieceClick){
+  getPieces(pieces, onPieceClick, playerTurn){
     return pieces.map((v,i)=>{
-      return <Piece key={i} pieceState={v} onPieceClick={onPieceClick}/>
+      return <Piece key={i} pieceState={v} onPieceClick={onPieceClick} playerTurn={playerTurn}/>
     });
   }
 }

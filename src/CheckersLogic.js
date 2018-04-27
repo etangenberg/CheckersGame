@@ -1,4 +1,5 @@
 import GameState from './GameState';
+import Position from './Position';
 
 function duplicate(state){
     return JSON.parse(JSON.stringify(state));
@@ -31,11 +32,7 @@ export function getPieceSelectedAllowedMovesState(state, selectedPieceState){
                 || (colDirection<0 && col > 0))  {
                 if (isEmptyTile(hitTile)){
                     hitTile.allowedMove = true;
-                    newState.allowedMoves.push( 
-                        {
-                            row: nextRowIndex,
-                            col: nextCol
-                        } );
+                    newState.allowedMoves.push(new Position(nextRowIndex, nextCol));
                 }
                 // check if hit
                 else if (hitTile.pieces[0].player !== state.CurrentPlayer){
@@ -43,16 +40,9 @@ export function getPieceSelectedAllowedMovesState(state, selectedPieceState){
                     let secondRow = row + 2*rowDirection;
                     let nextTile = getTile(secondRow, secondCol);
                      if (isEmptyTile(nextTile)){
-                        nextTile.hit.push({
-                            row: nextRowIndex,
-                            col: nextCol
-                        }); 
+                        nextTile.hit.push(new Position(nextRowIndex, nextCol)); 
                         nextTile.allowedMove = true;
-                        newState.allowedMoves.push( 
-                            {
-                                row: secondRow,
-                                col: secondCol
-                            });
+                        newState.allowedMoves.push(new Position(secondRow,secondCol));
                      }          
                 }
             }    
@@ -78,9 +68,10 @@ export function getPieceSelectedAllowedMovesState(state, selectedPieceState){
             return;
         
         const column = state.selected.col;
-        const row = state.selected.row;
-        console.log('state', state);
-        state.tileStates[row][column].selected = false;
+        const row = state.selected.row;        
+        if (state.tileStates[row][column].pieces.length > 0){
+            state.tileStates[row][column].pieces.forEach((v,k) => v.selected = false);
+        }
         state.selected = {};
     };
     
@@ -102,10 +93,8 @@ export function getPieceSelectedAllowedMovesState(state, selectedPieceState){
     };
 
     const select = (state, row, col) => {
-        state.selected ={
-            row : row,
-            col : col
-        }
+        state.selected = new Position(row,col);
+        state.tileStates[row][col].pieces.forEach((v, k) => { v.selected = true});        
     }    
 
     export const moveSelectedToNewTile = (state, tileState) => {

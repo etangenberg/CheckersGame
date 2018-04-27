@@ -10,7 +10,8 @@ class Board extends Component {
       return Array.from({length: rowCount}, (v, i) => 
         ( <Row key={i} row={i} tileStates={tileStates[i]}
           onPieceClick={onPieceClick}
-          onAllowedMoveClicked={onAllowedMoveClicked}/>) );
+          onAllowedMoveClicked={onAllowedMoveClicked}
+          playerTurn={state.CurrentPlayer}/>) );
     }
 
     return (
